@@ -17,32 +17,29 @@ import pandas as pd
 # In[2]:
 
 
-# URL of page to be scraped
+# URL of page to be scraped - Launch page first
+executable_path = {'executable_path': 'chromedriver.exe'}
+browser = Browser('chrome', **executable_path, headless=False)
 url = 'https://mars.nasa.gov/news/'
+browser.visit(url)
 
 
 # In[3]:
 
 
-# Retrieve page with the requests module
-response = requests.get(url)
+# Use Beautiful Soup to parse the data
+html = browser.html
+soup = bs(html,'html.parser')
 
 
 # In[4]:
-
-
-# Create BeautifulSoup object; parse with 'lxml'
-soup = bs(response.text, 'lxml')
-
-
-# In[5]:
 
 
 # Examine the results, then determine element that contains sought info
 print(soup.prettify())
 
 
-# In[6]:
+# In[5]:
 
 
 # Retrieve the Latest News Title and paragraph text
@@ -54,21 +51,14 @@ print(news_p)
 
 # ## JPL Mars Space Images - Featured Image
 
-# In[7]:
-
-
-executable_path = {'executable_path': 'chromedriver.exe'}
-browser = Browser('chrome', **executable_path, headless=False)
-
-
-# In[8]:
+# In[6]:
 
 
 url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
 browser.visit(url)
 
 
-# In[9]:
+# In[7]:
 
 
 # Request and parse the HTML
@@ -79,7 +69,7 @@ time.sleep(4)
 browser.click_link_by_partial_text('more info')
 
 
-# In[10]:
+# In[8]:
 
 
 # Request and parse again
@@ -90,22 +80,17 @@ featured_image_url = 'https://www.jpl.nasa.gov'+image
 print(featured_image_url)
 
 
-# In[ ]:
-
-
-
-
-
 # ## JPL Mars Space Images - Featured Image
 
-# In[11]:
+# In[9]:
 
 
 url = 'https://twitter.com/marswxreport?lang=en'
+time.sleep(3)
 browser.visit(url)
 
 
-# In[12]:
+# In[10]:
 
 
 # Request and parse
@@ -117,14 +102,14 @@ print(mars_weather)
 
 # ## Mars Facts
 
-# In[13]:
+# In[11]:
 
 
 url = 'https://space-facts.com/mars/'
 browser.visit(url)
 
 
-# In[14]:
+# In[12]:
 
 
 # Request and parse
@@ -133,14 +118,14 @@ soup = BeautifulSoup(html_code, "html.parser")
 print(soup.prettify())
 
 
-# In[15]:
+# In[13]:
 
 
 My_table = soup.find('table',{'class':'tablepress tablepress-id-p-mars'})
 print(My_table.prettify())
 
 
-# In[16]:
+# In[14]:
 
 
 My_table_rows = My_table.find_all('tr')
@@ -148,7 +133,7 @@ col_1 = []
 col_2 = []
 
 
-# In[17]:
+# In[15]:
 
 
 for row in My_table_rows:
@@ -157,7 +142,7 @@ for row in My_table_rows:
     col_2.append(rows[1].text)
 
 
-# In[18]:
+# In[16]:
 
 
 print(col_1)
@@ -169,14 +154,14 @@ print(facts_html)
 
 # ## Mars Hemispheres
 
-# In[19]:
+# In[17]:
 
 
 url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
 browser.visit(url)
 
 
-# In[20]:
+# In[18]:
 
 
 # Request and parse the HTML
@@ -194,7 +179,7 @@ for title in titles:
     print(title)
 
 
-# In[21]:
+# In[19]:
 
 
 links = []
@@ -208,13 +193,13 @@ for title in titles:
     browser.back()
 
 
-# In[22]:
+# In[20]:
 
 
 print(links)
 
 
-# In[23]:
+# In[22]:
 
 
 hemisphere_image_urls = {}
