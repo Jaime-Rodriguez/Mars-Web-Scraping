@@ -1,3 +1,4 @@
-[0817/220716.910:ERROR:file_io.cc(134)] WriteFile: There is not enough space on the disk. (0x70)
-[0817/220716.911:ERROR:crash_report_exception_handler.cc(111)] WriteEverything failed
-[0817/220716.911:ERROR:filesystem_win.cc(148)] DeleteFile C:\Users\tepa75\AppData\Local\Temp\scoped_dir31736_26138\Crashpad\reports\b4901618-6086-4531-a0d8-230a88f8649f.dmp: The process cannot access the file because it is being used by another process. (0x20)
+[0819/213543.768:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0819/213543.770:ERROR:exception_snapshot_win.cc(98)] thread ID 13076 not found in process
+[0819/223226.451:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0819/223226.454:ERROR:exception_snapshot_win.cc(98)] thread ID 14720 not found in process
