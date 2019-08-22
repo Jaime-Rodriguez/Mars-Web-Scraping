@@ -8,7 +8,12 @@
 
   <!-- Bring in our bootstrap stylesheet -->
   <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.css">  <link rel="stylesheet" href="style.css">
-
+<style>
+#border {
+padding: 2px;
+border: 1px solid rgb(0, 0, 0);
+}
+</style>
 </head>
 
 <body>
@@ -20,13 +25,48 @@
     </div>
   </div>
 
-  <div class="container-fluid wrapper jumbotron">
-    <div class="row">
-
-      <h1> hello world</h1>
+  <div class="container-fluid wrapper jumbotron" style="background-color: white">
+      <h1 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color: whitesmoke; background-color: rgb(2, 3, 63); padding-left: 5%")>Latest Mars News</h1>
+      <h4 style="font-weight: bolder">{{mars_list.News_Title}}</h4>
       <p>{{mars_list.News_Paragraph}}</p>
-      <img src={{mars_list.Hemisphere_Image_URLs[0].img_url}}>
-    </div>
+      <br>
+      <hr>
+        <div class="row"> 
+          <div class="col-md-6">
+            <h1>Featured Mars Image</h1>
+            <img src={{mars_list.Featured_Img_URL}} alt="Featured Mars Image" width="80%">
+          </div>
+          <div class="col-md-6">  
+            <div id="border"><h3>Current Weather on Mars</h3>          
+            <p>{{mars_list.Mars_Weather}}</p>
+            </div>
+            <br>  
+          <h3 style="font-weight: bold">Mars Facts</h3>
+          <p>{{mars_list.Mars_Facts | safe}}</p>
+          </div>
+        </div>
+        <br><br><br>
+      <div id="border">    
+        <div class="row">
+            <div class="col-md-12">
+              <h2 style="font-weight: bold"><center>Mars Hemispheres</center></h2>
+              <hr>
+        <div class="row">
+          <div class="col-md-6">
+            <h3><center>{{mars_list.Hemisphere_Image_URLs[0].title}}</center></h3>
+            <center><img src={{mars_list.Hemisphere_Image_URLs[0].img_url}} width="80%"></center>
+            <h3><center>{{mars_list.Hemisphere_Image_URLs[1].title}}</center></h3>
+            <center><img src={{mars_list.Hemisphere_Image_URLs[1].img_url}} width="80%"></center>
+          </div>
+          <div class="col-md-6">
+            <h3><center>{{mars_list.Hemisphere_Image_URLs[2].title}}</center></h3>
+            <center><img src={{mars_list.Hemisphere_Image_URLs[2].img_url}} width="80%"></center>
+            <h3><center>{{mars_list.Hemisphere_Image_URLs[3].title}}</center></h3>
+            <center><img src={{mars_list.Hemisphere_Image_URLs[3].img_url}} width="80%"></center>
+
+            </div>
+        </div>
+      </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
